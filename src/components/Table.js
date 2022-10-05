@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { rmCoin } from '../redux/actions';
 
 class Table extends Component {
+  handleClick = (id) => {
+    const { expenses, dispatch } = this.props;
+    const rm = expenses.filter((remove) => remove.id !== id);
+    dispatch(rmCoin(rm));
+  };
+
   render() {
     const { expenses } = this.props;
     console.log('log', expenses);
@@ -52,7 +59,17 @@ class Table extends Component {
                   {' '}
                 </td>
                 <td>Real</td>
-                <td>  Editar/Excluir </td>
+                <td>
+                  {' '}
+                  <button
+                    data-testid="delete-btn"
+                    type="button"
+                    onClick={ () => this.handleClick(coins.id) }
+                  >
+                    Apagar
+                  </button>
+                  {' '}
+                </td>
               </tr>
             ))}
             {' '}

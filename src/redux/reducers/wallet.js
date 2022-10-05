@@ -1,4 +1,4 @@
-import { GET_WALLET, GET_INPUTS } from '../actions';
+import { GET_WALLET, GET_INPUTS, REMOVE_COIN } from '../actions';
 
 const INITIAL_STATE = {
   currencies: [],
@@ -18,6 +18,11 @@ const wallet = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       expenses: [...state.expenses, action.payload],
+    };
+  case REMOVE_COIN:
+    return {
+      ...state,
+      expenses: action.payload,
     };
 
   default:
